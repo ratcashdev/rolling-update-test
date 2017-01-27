@@ -14,6 +14,6 @@ import javax.ejb.Stateless;
 public class Laborant {
 
 	public String getExperimentResult() {
-		return "successful";
+		return "failed";
 	}
 }
