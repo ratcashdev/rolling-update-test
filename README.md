@@ -4,10 +4,10 @@ Simple project to facilitate the testing of Payara's rolling update feature
 ##Usage
 
 1. start PAYARA `asadmin start-domain payaradomain`
-2. git checkout 73ec4234
+2. git checkout master
 3. build using `mvn clean package`
 4. deploy to Payara using: `asadmin deploy --enabled false --name=app:1 rollingUpdate.war`
-5. git checkout d5410a28
+5. git checkout appv2
 6. build using `mvn clean package`
 7. deploy to Payara using: `asadmin deploy --enabled false --name=app:2 rollingUpdate.war`
 8. enable version 1: `asadmin enable app:1`

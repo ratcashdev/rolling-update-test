@@ -8,6 +8,7 @@ package net.ratcash.rollingupdate;
 import com.airhacks.porcupine.execution.boundary.Dedicated;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -73,14 +74,14 @@ public class Resource {
 	@GET
 	@Path("complexAsync")
 	public void complexAsync(@QueryParam("name") String name,  @Suspended AsyncResponse response) {
+		response.setTimeout(3, TimeUnit.SECONDS);
 		CompletableFuture.supplyAsync(() -> complex(name), heavy)
 				.thenAccept(response::resume)
-				.exceptionally((Throwable t) -> {
-					Response r = Response.serverError().header("reason", "Problem with the async executor").build();
-                    response.resume(r);
+				.exceptionally((t) -> {
+					t.printStackTrace();
+                    response.resume(t.getMessage());
 					return null;
 				});
-//		return null;
 	}
 	
 }
