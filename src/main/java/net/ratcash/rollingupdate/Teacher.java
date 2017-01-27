@@ -22,7 +22,7 @@ public class Teacher {
 	Laborant laborant;
 	
 	public String getSubject() {
-		return "physics";
+		return "chemistry";
 	}
 	
 	public String getExperimentResult() {

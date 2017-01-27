@@ -31,7 +31,7 @@ public class SessionDataHolder implements Serializable {
 	
 	public int getAndChage() {
 		int oldTemp = temperature;
-		temperature = r.nextInt(999)+5000;
+		temperature = r.nextInt(999)+1;
 		return oldTemp;
 	}
 }

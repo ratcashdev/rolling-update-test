@@ -14,6 +14,6 @@ import javax.enterprise.context.ApplicationScoped;
 public class Configuration {
 	
 	public String getConfig(String name) {
-		return name + "-productionConfig";
+		return name + "-sampleConfig";
 	}
 }
