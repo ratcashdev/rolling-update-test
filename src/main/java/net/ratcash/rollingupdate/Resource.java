@@ -75,7 +75,10 @@ public class Resource {
 	@Path("complexAsync")
 	public void complexAsync(@QueryParam("name") String name,  @Suspended AsyncResponse response) {
 		response.setTimeout(3, TimeUnit.SECONDS);
-		CompletableFuture.supplyAsync(() -> complex(name), heavy)
+		final int temp = getTemperature();
+		CompletableFuture.supplyAsync(() -> {
+			return String.format("The %s teacher's laborant had a %s experiment with the following config: {%s} and temperature: %d", 
+				teacher.getSubject(), teacher.getExperimentResult(), configuration.getConfig(name), temp);}, heavy)
 				.thenAccept(response::resume)
 				.exceptionally((t) -> {
 					t.printStackTrace();
